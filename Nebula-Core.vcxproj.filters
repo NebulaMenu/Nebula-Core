@@ -5,30 +5,69 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Modules">
-      <UniqueIdentifier>{919430fd-a718-4af9-84be-42a2afac65d5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core">
       <UniqueIdentifier>{1f0f0839-aae2-437e-938e-a37703fe4069}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules">
+      <UniqueIdentifier>{919430fd-a718-4af9-84be-42a2afac65d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\player">
+      <UniqueIdentifier>{711a02f4-3f58-441a-9c67-139f2ac9ee43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\vehicle">
+      <UniqueIdentifier>{8e20105f-681a-4eba-8f65-227ed99b8d52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\teleport">
+      <UniqueIdentifier>{0c77a023-45d1-4933-b87d-0c1e435653ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\modules\player.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="src\core\app.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="src\core\entry.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\modules\vehicle\SpeedBoost.cpp">
+      <Filter>Modules\vehicle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\vehicle\VehicleMenu.cpp">
+      <Filter>Modules\vehicle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\vehicle\VehicleModule.cpp">
+      <Filter>Modules\vehicle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\player\PlayerMenu.cpp">
+      <Filter>Modules\player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\player\PlayerMod.cpp">
+      <Filter>Modules\player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\teleport\TeleportModule.cpp">
+      <Filter>Modules\teleport</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\modules\player.hpp">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="src\core\app.hpp">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\vehicle\SpeedBoost.hpp">
+      <Filter>Modules\vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\vehicle\VehicleMenu.hpp">
+      <Filter>Modules\vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\vehicle\VehicleModule.hpp">
+      <Filter>Modules\vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\player\PlayerMenu.hpp">
+      <Filter>Modules\player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\player\PlayerMod.hpp">
+      <Filter>Modules\player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\teleport\TeleportModule.hpp">
+      <Filter>Modules\teleport</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

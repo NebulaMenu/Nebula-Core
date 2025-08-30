@@ -21,11 +21,21 @@
   <ItemGroup>
     <ClCompile Include="src\core\app.cpp" />
     <ClCompile Include="src\core\entry.cpp" />
-    <ClCompile Include="src\modules\player.cpp" />
+    <ClCompile Include="src\modules\player\PlayerMenu.cpp" />
+    <ClCompile Include="src\modules\player\PlayerMod.cpp" />
+    <ClCompile Include="src\modules\teleport\TeleportModule.cpp" />
+    <ClCompile Include="src\modules\vehicle\SpeedBoost.cpp" />
+    <ClCompile Include="src\modules\vehicle\VehicleMenu.cpp" />
+    <ClCompile Include="src\modules\vehicle\VehicleModule.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\app.hpp" />
-    <ClInclude Include="src\modules\player.hpp" />
+    <ClInclude Include="src\modules\player\PlayerMenu.hpp" />
+    <ClInclude Include="src\modules\player\PlayerMod.hpp" />
+    <ClInclude Include="src\modules\teleport\TeleportModule.hpp" />
+    <ClInclude Include="src\modules\vehicle\SpeedBoost.hpp" />
+    <ClInclude Include="src\modules\vehicle\VehicleMenu.hpp" />
+    <ClInclude Include="src\modules\vehicle\VehicleModule.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nebula-UI\NebulaUIProject.vcxproj">
