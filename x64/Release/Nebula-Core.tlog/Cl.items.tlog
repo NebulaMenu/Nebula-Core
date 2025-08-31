@@ -1,8 +1,0 @@
-E:\Dev\skid\Nebula-Project\Nebula-Core\src\core\app.cpp;E:\Dev\skid\Nebula-Project\Nebula-Core\x64\Release\app.obj
-E:\Dev\skid\Nebula-Project\Nebula-Core\src\core\entry.cpp;E:\Dev\skid\Nebula-Project\Nebula-Core\x64\Release\entry.obj
-E:\Dev\skid\Nebula-Project\Nebula-Core\src\modules\player\PlayerMenu.cpp;E:\Dev\skid\Nebula-Project\Nebula-Core\x64\Release\PlayerMenu.obj
-E:\Dev\skid\Nebula-Project\Nebula-Core\src\modules\player\PlayerMod.cpp;E:\Dev\skid\Nebula-Project\Nebula-Core\x64\Release\PlayerMod.obj
-E:\Dev\skid\Nebula-Project\Nebula-Core\src\modules\teleport\TeleportModule.cpp;E:\Dev\skid\Nebula-Project\Nebula-Core\x64\Release\TeleportModule.obj
-E:\Dev\skid\Nebula-Project\Nebula-Core\src\modules\vehicle\SpeedBoost.cpp;E:\Dev\skid\Nebula-Project\Nebula-Core\x64\Release\SpeedBoost.obj
-E:\Dev\skid\Nebula-Project\Nebula-Core\src\modules\vehicle\VehicleMenu.cpp;E:\Dev\skid\Nebula-Project\Nebula-Core\x64\Release\VehicleMenu.obj
-E:\Dev\skid\Nebula-Project\Nebula-Core\src\modules\vehicle\VehicleModule.cpp;E:\Dev\skid\Nebula-Project\Nebula-Core\x64\Release\VehicleModule.obj
