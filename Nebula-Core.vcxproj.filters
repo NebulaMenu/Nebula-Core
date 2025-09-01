@@ -20,6 +20,15 @@
     <Filter Include="Modules\teleport">
       <UniqueIdentifier>{0c77a023-45d1-4933-b87d-0c1e435653ad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="natives">
+      <UniqueIdentifier>{7cd0aa9a-8cc3-4435-8aa7-168c884a9ea1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="memory">
+      <UniqueIdentifier>{0794e61f-8e1c-48cd-8cb4-835f01b8ccdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{59fd29bb-7310-4dfe-870b-4a920c948234}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\core\app.cpp">
@@ -46,6 +55,9 @@
     <ClCompile Include="src\modules\teleport\TeleportModule.cpp">
       <Filter>Modules\teleport</Filter>
     </ClCompile>
+    <ClCompile Include="src\utils\NebulaUI.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\app.hpp">
@@ -68,6 +80,18 @@
     </ClInclude>
     <ClInclude Include="src\modules\teleport\TeleportModule.hpp">
       <Filter>Modules\teleport</Filter>
+    </ClInclude>
+    <ClInclude Include="src\natives\Input.hpp">
+      <Filter>natives</Filter>
+    </ClInclude>
+    <ClInclude Include="src\natives\Natives.hpp">
+      <Filter>natives</Filter>
+    </ClInclude>
+    <ClInclude Include="src\natives\ScriptHook.hpp">
+      <Filter>natives</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\NebulaUI.hpp">
+      <Filter>utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

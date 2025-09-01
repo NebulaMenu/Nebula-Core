@@ -27,6 +27,7 @@
     <ClCompile Include="src\modules\vehicle\SpeedBoost.cpp" />
     <ClCompile Include="src\modules\vehicle\VehicleMenu.cpp" />
     <ClCompile Include="src\modules\vehicle\VehicleModule.cpp" />
+    <ClCompile Include="src\utils\NebulaUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\app.hpp" />
@@ -36,6 +37,10 @@
     <ClInclude Include="src\modules\vehicle\SpeedBoost.hpp" />
     <ClInclude Include="src\modules\vehicle\VehicleMenu.hpp" />
     <ClInclude Include="src\modules\vehicle\VehicleModule.hpp" />
+    <ClInclude Include="src\natives\Input.hpp" />
+    <ClInclude Include="src\natives\Natives.hpp" />
+    <ClInclude Include="src\natives\ScriptHook.hpp" />
+    <ClInclude Include="src\utils\NebulaUI.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nebula-UI\NebulaUIProject.vcxproj">

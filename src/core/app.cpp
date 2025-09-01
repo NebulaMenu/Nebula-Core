@@ -4,9 +4,12 @@
 #include "modules/vehicle/VehicleMenu.hpp"
 #include "modules/vehicle/VehicleModule.hpp"
 #include "modules/teleport/TeleportModule.hpp"
+#include "utils/NebulaUI.hpp"
+#include "menu.hpp"
 #include "script.h"
 #include <Windows.h>
 #include <memory>
+#include <vector>
 
 namespace Ctrl {
     constexpr int UP = 172;
@@ -60,44 +63,27 @@ static inline void HandleMenuControls(bool menuOpen)
     }
 }
 
-static inline void PostNotificationWithIcon(const char* body,
-    const char* title,
-    const char* subtitle)
-{
-    char* dict = (char*)"nebula";
-    char* tx = (char*)"nebula_logo";
+enum class Cmd {
+    ToggleMenu,
+    Up, Down, Left, Right,
+    Select, Back
+};
 
-    GRAPHICS::REQUEST_STREAMED_TEXTURE_DICT(dict, false);
-    if (!GRAPHICS::HAS_STREAMED_TEXTURE_DICT_LOADED(dict)) {
-        dict = (char*)"CHAR_SOCIAL_CLUB";
-        tx = (char*)"CHAR_SOCIAL_CLUB";
-    }
+static std::vector<Cmd> g_cmdQueue;
+static inline void Enqueue(Cmd c) { g_cmdQueue.push_back(c); }
 
-    UI::_SET_NOTIFICATION_TEXT_ENTRY((char*)"STRING");
-    UI::_ADD_TEXT_COMPONENT_STRING((char*)body);
-
-
-    // _SET_NOTIFICATION_MESSAGE(txDict, txName, flash, iconType, sender, subject)
-    UI::_SET_NOTIFICATION_MESSAGE(dict, tx, false, 4, (char*)title, (char*)subtitle);
-
-    UI::_DRAW_NOTIFICATION(false, true);
-
-    //if (dict == (char*)"nebula")
-    //    GRAPHICS::SET_STREAMED_TEXTURE_DICT_AS_NO_LONGER_NEEDED((char*)"nebula");
-}
-
-static void ShowNebulaWelcomeNotificationOnce()
-{
+static void ShowNebulaWelcomeNotificationOnce() {
     static bool shown = false;
     if (shown) return;
     shown = true;
 
-    const char* body =
+    NebulaUI::ShowNotification(
         "Welcome to ~w~NEBULA~w~. Press ~y~F5~w~ to open.~n~"
         "~y~Version: 0.0.1 Loaded!~n~"
-        "By Elio";
-
-    PostNotificationWithIcon(body, "NEBULA", "Menu loaded");
+        "By Elio",
+        "NEBULA",
+        "Menu loaded"
+    );
 }
 
 void App::Init() {
@@ -114,6 +100,54 @@ void App::Init() {
 
 void App::Tick() {
     HandleMenuControls(menuOpen);
+    if (!g_cmdQueue.empty()) {
+        for (Cmd c : g_cmdQueue) {
+            switch (c) {
+            case Cmd::ToggleMenu:
+                menuOpen = !menuOpen;
+                if (menuOpen && root) {
+                    root->Open();
+                    AUDIO::PLAY_SOUND_FRONTEND(-1, (char*)"SELECT", (char*)"HUD_FRONTEND_DEFAULT_SOUNDSET", false);
+                }
+                else {
+                    AUDIO::PLAY_SOUND_FRONTEND(-1, (char*)"BACK", (char*)"HUD_FRONTEND_DEFAULT_SOUNDSET", false);
+                    if (root) root->Close();
+                }
+                break;
+
+            case Cmd::Up:
+                if (menuOpen && root) root->Up();
+                break;
+            case Cmd::Down:
+                if (menuOpen && root) root->Down();
+                break;
+            case Cmd::Left:
+                if (menuOpen && root) root->Left();
+                break;
+            case Cmd::Right:
+                if (menuOpen && root) root->Right();
+                break;
+            case Cmd::Select:
+                if (menuOpen && root) {
+                    if (auto next = root->Select()) { stack.push_back(root); root = next; }
+                }
+                break;
+            case Cmd::Back:
+                if (menuOpen && root) {
+                    AUDIO::PLAY_SOUND_FRONTEND(-1, (char*)"BACK", (char*)"HUD_FRONTEND_DEFAULT_SOUNDSET", false);
+                    if (!stack.empty()) {
+                        root = stack.back(); stack.pop_back();
+                    }
+                    else {
+                        menuOpen = false;
+                        root->Close();
+                    }
+                }
+                break;
+            }
+        }
+        g_cmdQueue.clear();
+    }
 
     if (menuOpen && root) {
         root->Render();
@@ -125,18 +159,13 @@ void App::Tick() {
 }
 
 void App::OnKey(int vk) {
-    if (vk == VK_F5) {
-        menuOpen = !menuOpen;
-        if (menuOpen && root) root->Open();
-        else if (root) root->Close();
-        return;
-    }
+    if (vk == VK_F5) { Enqueue(Cmd::ToggleMenu); return; }
     if (!menuOpen || !root) return;
 
-    if (vk == VK_UP)       root->Up();
-    else if (vk == VK_DOWN)     root->Down();
-    else if (vk == VK_LEFT)     root->Left();
-    else if (vk == VK_RIGHT)    root->Right();
-    else if (vk == VK_RETURN) { if (auto next = root->Select()) { stack.push_back(root); root = next; } }
-    else if (vk == VK_BACK) { if (!stack.empty()) { root = stack.back(); stack.pop_back(); } }
+    if (vk == VK_UP)       Enqueue(Cmd::Up);
+    else if (vk == VK_DOWN)     Enqueue(Cmd::Down);
+    else if (vk == VK_LEFT)     Enqueue(Cmd::Left);
+    else if (vk == VK_RIGHT)    Enqueue(Cmd::Right);
+    else if (vk == VK_RETURN)   Enqueue(Cmd::Select);
+    else if (vk == VK_BACK)     Enqueue(Cmd::Back);
 }
