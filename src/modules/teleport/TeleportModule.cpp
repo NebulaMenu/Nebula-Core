@@ -214,27 +214,24 @@ namespace TeleportMod {
     void AttachTo(const std::shared_ptr<Menu>& mainMenu) {
         mainMenu->AddFolder("Teleport", [](std::shared_ptr<Menu> m) {
 
+            m->AddSeparator("[ Quick actions ]");
             m->AddAction("Teleport to Waypoint", []() { TeleportToWaypoint(); });
             m->AddAction("Teleport to Objective", []() { TeleportToObjective(); });
             m->AddNumber("Teleport Forward", &forwardDistance, 1.0f, 100.0f, 1.0f);
             m->AddAction("Go Forward", []() { TeleportForward(forwardDistance); });
 
+            m->AddSeparator("[ Saved locations ]");
             auto savedMenu = m->AddFolder("Saved Locations");
             for (int i = 0; i < 10; i++) {
-                std::string slotName = "Slot " + std::to_string(i + 1);
-                int slotIndex = i;
-
-                savedMenu->AddAction("Save to " + slotName, [slotIndex]() {
-                    SaveCurrentPosition(slotIndex);
-                    });
-                savedMenu->AddAction("Load " + slotName, [slotIndex]() {
-                    LoadSavedPosition(slotIndex);
-                    });
+                const int slotIndex = i;
+                const std::string slotName = "Slot " + std::to_string(i + 1);
+                savedMenu->AddAction("Save to " + slotName, [slotIndex]() { SaveCurrentPosition(slotIndex); });
+                savedMenu->AddAction("Load " + slotName, [slotIndex]() { LoadSavedPosition(slotIndex); });
             }
 
+            m->AddSeparator("[ Location categories ]");
             for (const auto& category : kCategories) {
                 auto catMenu = m->AddFolder(category.name);
-
                 for (const auto& loc : category.locations) {
                     catMenu->AddAction(loc.name, [loc]() {
                         Entity e = GetTeleportEntity();
